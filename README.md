@@ -1,1 +1,1 @@
-# datascience
+# trading-simulator
