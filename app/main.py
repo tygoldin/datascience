@@ -7,18 +7,20 @@ import numpy as np
 import datetime
 import csv
 
+# loading in the tickers to be used for the stocks
 data = []
 with open('app/tickers.csv') as f:
     for row in csv.reader(f):
         data.append(row[0])
 
 print(data)
-ticker = yf.download(data, period='max')
 start_date = input("Input starting year with format mm/dd/yy:")
-
+# start_date = "12/13/18"
 date = datetime.datetime.strptime(start_date, "%m/%d/%y")
-
 print("Starting date is: ", date)
+ticker = yf.download(data, start=date - datetime.timedelta(days=365), end=date + datetime.timedelta(days=365))
+
+
 
 while True:
     print(date)
@@ -34,6 +36,19 @@ while True:
         date = date + datetime.timedelta(days=day)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 # year = input("Please enter starting year: ")
 
 # ticker = yf.download(['TSLA', 'MSFT'], period='ytd')
@@ -44,9 +59,9 @@ while True:
 # class Application:
 #     def __init__(self, master):
 #         self.builder = builder = pygubu.Builder()
-#         builder.add_from_file('gui.ui')
+#         builder.add_from_file('app/gui.ui')
 #         self.application = builder.get_object('Frame_1', master)
-
+#
 # if __name__ == '__main__':
 #     root = tk.Tk()
 #     app = Application(root)
